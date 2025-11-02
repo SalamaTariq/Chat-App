@@ -1,0 +1,706 @@
+/* === GLOBAL PAGE STYLES === */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* === UNIVERSAL CARD STYLING === */
+#signUp-login-container,
+#username-container,
+.chat-container {
+  background: #fff;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 25px;
+  padding: 40px 25px;
+  box-shadow: 0 15px 40px rgba(255, 107, 207, 0.3);
+  text-align: center;
+  position: relative;
+  animation: fadeIn 1s ease forwards;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* === FLOATING DECORATIONS === */
+.decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape1 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #736bff, #b19eff);
+  top: -40px;
+  left: -30px;
+}
+
+.shape2 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #ff8e8e, #ff6dc0);
+  bottom: -60px;
+  right: -50px;
+  animation-delay: 2s;
+}
+
+.shape3 {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #43e3b3, #66ffd2);
+  top: 35%;
+  left: -25px;
+  animation-delay: 1s;
+}
+
+/* === FLOATING ANIMATION === */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* === HEADINGS === */
+h1, h2 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 15px;
+  z-index: 2;
+  position: relative;
+}
+
+/* === INPUT FIELDS === */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e8d6ff;
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fefaff;
+  margin-bottom: 18px;
+  z-index: 2;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #b574ff;
+  box-shadow: 0 0 12px rgba(181, 116, 255, 0.4);
+}
+
+/* === BUTTONS === */
+button {
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 30px;
+  padding: 12px 0;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 107, 207, 0.4);
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: relative;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(255, 107, 207, 0.5);
+}
+
+/* === DIVIDER (for SignUp/Login) === */
+.divider {
+  margin: 15px 0;
+  font-size: 14px;
+  color: #777;
+  position: relative;
+  z-index: 2;
+}
+
+/* === GOOGLE BUTTON === */
+#google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  border: 2px solid rgba(255, 107, 207, 0.4);
+  color: #444;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+#google-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+#google-btn:hover {
+  background: rgba(255, 107, 207, 0.1);
+  transform: translateY(-2px);
+}
+
+/* === CHAT CONTAINER === */
+.chat-container {
+  max-width: 420px;
+}
+
+#logout-btn {
+  background: linear-gradient(135deg, #ff6dc0, #736bff);
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 20px;
+  width: auto;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.message-box {
+  height: 400px;
+  overflow-y: auto;
+  background: rgba(255, 107, 207, 0.1);
+  border-radius: 12px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+/* === CHAT BUBBLES === */
+.my-message {
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  color: white;
+  border-radius: 15px 15px 0 15px;
+  padding: 10px;
+  margin: 8px 0;
+  text-align: right;
+  width: fit-content;
+  max-width: 80%;
+  margin-left: auto;
+}
+
+.other-message {
+  background: #fff;
+  color: #333;
+  border: 2px solid rgba(255, 107, 207, 0.3);
+  border-radius: 15px 15px 15px 0;
+  padding: 10px;
+  margin: 8px 0;
+  text-align: left;
+  width: fit-content;
+  max-width: 80%;
+  margin-right: auto;
+}
+
+/* === SCROLLBAR BEAUTIFY === */
+.message-box::-webkit-scrollbar {
+  width: 6px;
+}
+.message-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 207, 0.4);
+  border-radius: 10px;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 480px) {
+  #signUp-login-container,
+  #username-container,
+  .chat-container {
+    max-width: 95%;
+    padding: 30px 20px;
+  }
+
+  input, button {
+    font-size: 13px;
+  }
+
+  h1, h2 {
+    font-size: 20px;
+  }
+
+  .message-box {
+    height: 320px;
+  }
+}
+/* === GLOBAL PAGE STYLES === */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* === UNIVERSAL CARD STYLE === */
+#signUp-login-container,
+#username-container,
+.chat-container {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 25px;
+  padding: 40px 30px;
+  box-shadow: 0 15px 35px rgba(255, 107, 207, 0.3);
+  text-align: center;
+  position: relative;
+  animation: fadeIn 1s ease forwards;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* === DECORATIVE FLOATING SHAPES === */
+.decorations {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape1 {
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, #736bff, #b19eff);
+  top: -40px; left: -30px;
+}
+
+.shape2 {
+  width: 120px; height: 120px;
+  background: linear-gradient(135deg, #ff8e8e, #ff6dc0);
+  bottom: -60px; right: -50px;
+  animation-delay: 2s;
+}
+
+.shape3 {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, #43e3b3, #66ffd2);
+  top: 35%; left: -25px;
+  animation-delay: 1s;
+}
+
+/* === FLOAT ANIMATION === */
+@keyframes float {
+  0%, 100% { transform: translateY(-10px); }
+  50% { transform: translateY(10px); }
+}
+
+/* === HEADINGS === */
+h1, h2 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+  z-index: 2;
+  position: relative;
+}
+
+/* === INPUT FIELDS === */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e8d6ff;
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fefaff;
+  margin-bottom: 18px;
+  z-index: 2;
+  position: relative;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #b574ff;
+  box-shadow: 0 0 12px rgba(181, 116, 255, 0.4);
+}
+
+/* === BUTTONS === */
+button {
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 30px;
+  padding: 12px 0;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 107, 207, 0.4);
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: relative;
+  margin-top: 10px;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(255, 107, 207, 0.5);
+}
+
+/* === GOOGLE BUTTON === */
+#google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  border: 2px solid rgba(255, 107, 207, 0.4);
+  color: #444;
+  font-weight: 500;
+  box-shadow: none;
+  width: 100%;
+}
+
+#google-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+#google-btn:hover {
+  background: rgba(255, 107, 207, 0.1);
+  transform: translateY(-2px);
+}
+
+/* === DIVIDER === */
+.divider {
+  margin: 15px 0;
+  font-size: 14px;
+  color: #777;
+  position: relative;
+  z-index: 2;
+}
+
+/* === CHAT CONTAINER === */
+.chat-container {
+  max-width: 450px;
+}
+
+#logout-btn {
+  background: linear-gradient(135deg, #ff6dc0, #736bff);
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 20px;
+  width: auto;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.message-box {
+  height: 420px;
+  overflow-y: auto;
+  background: rgba(255, 107, 207, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 20px 0;
+  box-sizing: border-box;
+}
+
+/* === CHAT BUBBLES === */
+.message-box p {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.my-message, .other-message {
+  border-radius: 15px;
+  padding: 10px 14px;
+  max-width: 80%;
+  display: inline-block;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.my-message {
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  color: white;
+  border-radius: 15px 15px 0 15px;
+  margin-left: auto;
+}
+
+.other-message {
+  background: #fff;
+  color: #333;
+  border: 2px solid rgba(255, 107, 207, 0.3);
+  border-radius: 15px 15px 15px 0;
+  margin-right: auto;
+}
+
+/* === EDIT/DELETE BUTTONS INLINE === */
+.message-box button {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: color 0.3s ease;
+  padding: 0;
+  width: auto;
+  box-shadow: none;
+}
+
+.message-box button:hover {
+  color: #ff6dc0;
+}
+
+/* === INPUT BAR BELOW CHAT === */
+#message {
+  flex: 1;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 107, 207, 0.3);
+  padding: 10px 14px;
+  outline: none;
+  font-size: 14px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.chat-input-area button {
+  width: auto;
+  padding: 10px 18px;
+  border-radius: 20px;
+  margin-top: 0;
+}
+
+/* === SCROLLBAR BEAUTIFY === */
+.message-box::-webkit-scrollbar {
+  width: 6px;
+}
+.message-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 207, 0.4);
+  border-radius: 10px;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 480px) {
+  #signUp-login-container,
+  #username-container,
+  .chat-container {
+    max-width: 95%;
+    padding: 25px 20px;
+  }
+
+  input, button {
+    font-size: 13px;
+  }
+
+  h1, h2 {
+    font-size: 20px;
+  }
+
+  .message-box {
+    height: 350px;
+  }
+}
+
+
+/* ==== CHAT CONTAINER STYLING ==== */
+.chat-container {
+  width: 90%;
+  max-width: 450px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(115, 107, 255, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-container h2 {
+  text-align: center;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+#logout-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+#logout-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ==== MESSAGE BOX ==== */
+.message-box {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+/* ==== MY MESSAGES (RIGHT SIDE) ==== */
+.my-message {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 15px 15px 0 15px;
+  max-width: 75%;
+  word-wrap: break-word;
+  position: relative;
+  animation: popIn 0.3s ease;
+}
+
+.my-message b {
+  color: #fff;
+}
+
+.my-message button {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  margin-left: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ==== OTHER MESSAGES (LEFT SIDE) ==== */
+.other-message {
+  align-self: flex-start;
+  background: #f1f1f8;
+  color: #333;
+  padding: 10px 14px;
+  border-radius: 15px 15px 15px 0;
+  max-width: 75%;
+  word-wrap: break-word;
+  animation: popIn 0.3s ease;
+}
+
+.other-message b {
+  color: #736bff;
+}
+
+/* ==== INLINE BUTTONS (Edit/Delete) ==== */
+.my-message span,
+.other-message span {
+  display: inline;
+}
+
+/* ==== INPUT AREA ==== */
+#message {
+  width: calc(100% - 80px);
+  padding: 12px;
+  border-radius: 25px;
+  border: 2px solid #e5d8ff;
+  outline: none;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+#message:focus {
+  border-color: #736bff;
+  box-shadow: 0 0 10px rgba(115, 107, 255, 0.3);
+}
+
+button[onclick="sendMessage()"] {
+  width: 70px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[onclick="sendMessage()"]:hover {
+  transform: translateY(-2px);
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 480px) {
+  .chat-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  #message {
+    width: calc(100% - 70px);
+    padding: 10px;
+  }
+
+  button[onclick="sendMessage()"] {
+    width: 60px;
+    font-size: 13px;
+  }
+}
+
+/* ==== SMOOTH MESSAGE ANIMATION ==== */
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
