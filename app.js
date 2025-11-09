@@ -31,7 +31,7 @@ const db = getDatabase(app);
     const password = document.getElementById("password").value;
     createUserWithEmailAndPassword(auth , email , password)
     .then(()=>{
-        alert('✔ Sign Up Successfully')
+     swal( "Login Successfully ", "success")
         window.location.href='userName.html'
     })
     .catch((error)=>{
@@ -46,7 +46,7 @@ alert(error.message);
     const password = document.getElementById("password").value;
     signInWithEmailAndPassword(auth , email , password)
     .then(()=>{
-        alert('✔ Log In Successfully')
+    swal( "Log in Successfully ", "success");
         window.location.href='userName.html'
     })
     .catch((error)=>{
@@ -58,7 +58,7 @@ alert(error.message)
 document.getElementById("google-btn")?.addEventListener('click' , ()=>{       
     signInWithPopup(auth, provider)
     .then(()=>{
-        alert('Login Successfully ✔')
+    swal( "Login Successfully ", "success")
         window.location.href= 'index.html'
     })
     .catch((error)=>{
@@ -71,7 +71,7 @@ alert(error.message)
 document.getElementById('logout-btn')?.addEventListener('click' , ()=>{
   signOut(auth)
   .then(()=>{
-    alert('Log Out Successfully')
+swal( "Log out Successfully ", "success");
     window.location.href='index.html'
   })
   .catch((error)=>{
@@ -86,7 +86,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const username = document.getElementById('username').value.trim();
     
     if (username === "") {
-      alert("Please enter your name!");
+      swal("Please enter your name!")
+      
       return;
     }
 
@@ -109,10 +110,17 @@ if (message === "") return;
 // Push message to Firebase
 push(ref(db, "messages"), {
 name: username,
-text: message
+text: message,
+timestamp: Date.now() // ✅ time save hoga
 });
 document.getElementById("message").value = ""; // Clear input
 };
+// shows readable text for time
+function formatTime(timestamp) {
+  if (!timestamp) return ""; 
+  const date = new Date(timestamp);
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
 // Function to listen for new messages
 onChildAdded(ref(db, "messages"), function(snapshot) {
   const data = snapshot.val();
@@ -128,6 +136,7 @@ onChildAdded(ref(db, "messages"), function(snapshot) {
     msgElement.innerHTML = `
       <b>${data.name}:</b> 
       <span>${data.text}</span>
+      <small style="color: #ccc; font-size: 11px; margin-left: 25px;">${formatTime(data.timestamp)}</small>
       <button onclick="editMessage('${key}', '${data.text}')">✏️</button>
       <button onclick="deleteMessage('${key}')">🗑️</button>
     `;
@@ -135,9 +144,12 @@ onChildAdded(ref(db, "messages"), function(snapshot) {
   } else {
     // Just show message — no buttons
     msgElement.innerHTML = `
-      <b>${data.name}:</b> 
-      <span>${data.text}</span>
-    `;
+  <b>${data.name}:</b> 
+  <span>${data.text}</span>
+  <small style="color: #aaa; font-size: 11px; margin-left: 25px;">
+    ${formatTime(data.timestamp)}
+  </small>
+`;
     msgElement.classList.add("other-message"); // optional styling class
   }
 
@@ -153,16 +165,18 @@ onChildChanged(ref(db, "messages"), function(snapshot) {
   let msgElement = document.getElementById(key);
   if (msgElement) {
     msgElement.querySelector("span").textContent = data.text; // update text only
+     const timeTag = msgElement.querySelector("small");
+    if (timeTag) timeTag.textContent = formatTime(data.editedAt || data.timestamp);
   }
 });
 
 // ✅ Edit function (fixed)
 window.editMessage=function(key, oldText) {
-      console.log("Edit clicked for key:", key, "oldText:", oldText);
+ console.log("Edit clicked for key:", key, "oldText:", oldText);
   let newText = prompt("Edit your message:", oldText);
   if (newText !== null && newText.trim() !== "") {
     const msgRef = ref(db, "messages/" + key);
-    update(msgRef, { text: newText })
+    update(msgRef, { text: newText, editedAt: Date.now() })
       .then(() => {
         console.log("Message updated!");
       })
@@ -179,6 +193,20 @@ window.editMessage=function(key, oldText) {
       location.reload(); // simple refresh to update view
     }
     };
+
+
+// Press Enter to Send for newline
+document.getElementById('message').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+// Dark Light Mode
+document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
 
 
 
