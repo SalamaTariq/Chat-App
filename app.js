@@ -31,7 +31,11 @@ const db = getDatabase(app);
     const password = document.getElementById("password").value;
     createUserWithEmailAndPassword(auth , email , password)
     .then(()=>{
-     swal( "Login Successfully ", "success")
+      swal({
+ text: "Login Successfully",
+icon: "success",
+});
+    
         window.location.href='userName.html'
     })
     .catch((error)=>{
@@ -46,7 +50,10 @@ alert(error.message);
     const password = document.getElementById("password").value;
     signInWithEmailAndPassword(auth , email , password)
     .then(()=>{
-    swal( "Log in Successfully ", "success");
+  swal({
+ text: "Login Successfully",
+icon: "success",
+});
         window.location.href='userName.html'
     })
     .catch((error)=>{
@@ -58,7 +65,10 @@ alert(error.message)
 document.getElementById("google-btn")?.addEventListener('click' , ()=>{       
     signInWithPopup(auth, provider)
     .then(()=>{
-    swal( "Login Successfully ", "success")
+      swal({
+ text: "Login Successfully",
+icon: "success",
+});
         window.location.href= 'index.html'
     })
     .catch((error)=>{
@@ -71,7 +81,10 @@ alert(error.message)
 document.getElementById('logout-btn')?.addEventListener('click' , ()=>{
   signOut(auth)
   .then(()=>{
-swal( "Log out Successfully ", "success");
+  swal({
+ text: "Log out Successfully",
+icon: "success",
+})
     window.location.href='index.html'
   })
   .catch((error)=>{
@@ -211,3 +224,4 @@ document.getElementById('dark-mode-toggle').addEventListener('click', () => {
 
 
     
+
