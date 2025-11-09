@@ -1,3 +1,60 @@
+/* Light Mode (default) */
+body {
+  background: linear-gradient(135deg, #736bff, #ff6dc0);
+  color: #222;
+  font-family: Arial, sans-serif;
+}
+
+.chat-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 0 10px rgba(115, 107, 255, 0.3);
+}
+
+button {
+  background-color: #736bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14px;
+  cursor: pointer;  
+}
+ 
+
+button:hover {
+  background-color: #5a4ebf;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background: linear-gradient(135deg, #2c2a55, #7a416f);
+  color: #eee;
+
+
+}
+
+.dark-mode .chat-container {
+  background-color: #222;
+  box-shadow: 0 0 15px rgba(122, 65, 111, 0.5);
+}
+
+.dark-mode button {
+  background-color: #a3517c;
+  color: #eee;
+}
+
+.dark-mode button:hover {
+  background-color: #b86c95;
+}
+
+.dark-mode input, .dark-mode textarea {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #555;
+}
 /* === GLOBAL PAGE STYLES === */
 body {
   margin: 0;
@@ -702,5 +759,6 @@ button[onclick="sendMessage()"]:hover {
   from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
 
 
